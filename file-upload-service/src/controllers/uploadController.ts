@@ -17,13 +17,13 @@ export const uploadSingleFile = async (req: express.Request, res: express.Respon
 }
 
 export const uploadMultipleFiles = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const files:any = req.files ? req.files : null;
+    const files: any = req.files ? req.files : null;
     try {
         if (!files || files.length === 0) {
             throw new CustomError(400, "Validation error", "Resim yükleme kısmını yeniden deneyiniz.")
         }
-        const imageNames = files.map((file: { filename: any; }) => file.filename);
-        return res.status(201).json(Response.successResponse(imageNames, "Dosyalar başarıyla eklendi."))
+        const imageUrls = files.map((file: { filename: any; }) => `${req.protocol}://${req.get('host')}/uploads/` + file.filename);
+        return res.status(201).json(Response.successResponse(imageUrls, "Dosyalar başarıyla eklendi."))
     } catch (error) {
         next(error);
     }

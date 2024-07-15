@@ -1,9 +1,9 @@
 export const FILE_UPLOAD_SERVICES = {
-    HOSTNAME: process.env.FILE_UPLOAD_SERVICES_HOST,
-    PORT: process.env.FILE_UPLOAD_SERVICES_PORT
+    HOSTNAME: process.env.FILE_UPLOAD_SERVICE_HOST,
+    PORT: process.env.FILE_UPLOAD_SERVICE_PORT
 }
 
 export const USER_SERVICES = {
-    HOSTNAME: process.env.USER_SERVICES_HOST,
-    PORT: process.env.USER_SERVICES_PORT
+    HOSTNAME: process.env.USER_SERVICE_HOST,
+    PORT: process.env.USER_SERVICE_PORT
 }

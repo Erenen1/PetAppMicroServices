@@ -43,12 +43,12 @@ export const updateProfile = async (req: express.Request, res: express.Response,
                 imageUrl = response.data.data;
             }
         }
-        await updateUserById(userId, {
+        const updatedUser = await updateUserById(userId, {
             profilePhoto: imageUrl,
             address,
             bio
         })
-        return res.status(200).json(Response.successResponse(null, "Profil güncellendi."))
+        return res.status(200).json(Response.successResponse(updatedUser, "Profil güncellendi."))
 
     } catch (error) {
 
@@ -64,9 +64,9 @@ export const deleteProfile = async (req: express.Request, res: express.Response,
         if(!user){
             throw new CustomError(400,"Forbidden","Giriş yapınız lütfen.");
         }
-        await deleteUserById(userId);
+        const deletedUser = await deleteUserById(userId);
 
-        return res.status(200).json(Response.successResponse(null, "Profile silindi."))
+        return res.status(200).json(Response.successResponse(deletedUser, "Profile silindi."))
 
     } catch (error) {
 
