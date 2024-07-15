@@ -32,14 +32,14 @@ export const register = async (req: express.Request, res: express.Response, next
             throw new CustomError(400, "Bad request", "Bu email adresini alamazsın.");
         }
         const hashedPassword = sha256Hash(password);
-        await createUser({
+        const newUser = await createUser({
             username,
             email,
             password: hashedPassword,
             phoneNumber
         })
 
-        return res.status(201).json(Response.successResponse(null, "Hesap başarıyla oluşturuldu."))
+        return res.status(201).json(Response.successResponse(newUser, "Hesap başarıyla oluşturuldu."))
     } catch (error) {
         next(error);
     }

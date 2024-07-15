@@ -29,6 +29,15 @@ services:
     volumes:
       - file-upload-volume:/file-upload-server/uploads
 
+  pet-service:
+    container_name: pet-container
+    build:
+      context: ./pet-service
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo_database/pet-service
+
   mongodb:
     container_name: mongo_database
     image: mongo
