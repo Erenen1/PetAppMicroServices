@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  user-service:
+    container_name: user-service-container
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo_database/user-service
+    ports:
+      - "5000:5000"
+    networks:
+      - PetsMatchNetwork
+    
+  file-upload-service:
+    container_name: file-upload-container
+    build:
+      context: ./file-upload-service
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo_database/file-upload-service
+    ports:
+      - "5001:5001"
+    networks:
+      - PetsMatchNetwork
+    volumes:
+      - file-upload-volume:/file-upload-server/uploads
+
+  mongodb:
+    container_name: mongo_database
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - PetsMatchNetwork
+    volumes:
+      - Pet-Match-db-Volume:/data/db
+
+
+networks:
+  PetsMatchNetwork:
+    driver: bridge
+
+volumes:
+  Pet-Match-db-Volume:
+    driver: local
+  file-upload-volume:
+    driver: local
