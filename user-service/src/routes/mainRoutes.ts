@@ -7,7 +7,7 @@ import isAuth from "../middlewares/isAuth";
 const app = express();
 
 
-app.use("/users/profile", isAuth, profileRoutes);
+app.use("/profile", isAuth, profileRoutes);
 app.use("/auth", authRateLimiter, authRoutes);
 
 

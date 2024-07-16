@@ -37,10 +37,10 @@ export default mongoose.model("Posts", postSchema);
 import Post from "./post";
 
 
-export const getPostsWithFilter = (filter?: any) => Post.find(filter);
 export const getPostById = (_id: string) => Post.findOne({ _id: _id });
 
-export const deletePostById = (_id: string, session?: any) => Post.findByIdAndDelete(_id, session);
-export const createPost = (values: Record<string, any>, session?: any) => new Post(values).save(session).then(post => post.toObject());
+export const updatePostById = (_id: string, values: Record<string, any>) => Post.findByIdAndUpdate(_id, values);
+export const deletePostById = (_id: string) => Post.findByIdAndDelete(_id);
+export const createPost = (values: Record<string, any>) => new Post(values).save().then(post => post.toObject());
 
 

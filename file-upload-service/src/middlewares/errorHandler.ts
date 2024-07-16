@@ -10,11 +10,14 @@ export default (error: Error, req: express.Request, res: express.Response, next:
     if (error instanceof CustomError) {
         return res.status(error.statusCode).json(Response.errorResponse(error));
     }
-    else if (error.name == "ValidationError") {
-        return res.status(400).json("Bad request");
-    }
     else {
         console.log(error);
-        return res.status(500).json("Internal Server Error");
+        return res.status(500).json({
+            success: false,
+            error: {
+                message: "Internal Server Error",
+                description: "Internal Server Error"
+            }
+        });
     }
 }

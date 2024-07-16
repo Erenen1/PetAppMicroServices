@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-export default () => {
+export default async () => {
     if (typeof process.env.MONGO_URI === "string") {
-        mongoose.connect(process.env.MONGO_URI)
+        await mongoose.connect(process.env.MONGO_URI)
         console.log("MongoDB baglantisi basarili");
     }
     else {
