@@ -25,7 +25,7 @@ app.use(cors());
 
 import userServiceRoutes from "./routes/mainRoutes";
 
-app.use("/api",userServiceRoutes)
+app.use("/",userServiceRoutes)
 
 import errorHandler from "./middlewares/errorHandler";
 

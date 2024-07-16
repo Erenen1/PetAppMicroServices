@@ -23,9 +23,9 @@ app.use(express.json());
 app.use(cors());
 
 
-import userServiceRoutes from "./routes/mainRoutes";
+import postServiceRoutes from "./routes/postRoutes";
 
-app.use("/api",userServiceRoutes)
+app.use("/",postServiceRoutes)
 
 import errorHandler from "./middlewares/errorHandler";
 

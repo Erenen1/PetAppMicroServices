@@ -25,14 +25,14 @@ app.use(cors());
 
 import petRoutes from "./routes/petRoutes";
 
-app.use("/api/pets",petRoutes)
+app.use("/",petRoutes)
 
 import errorHandler from "./middlewares/errorHandler";
 
 app.use(errorHandler);
 
 
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 5003;
 app.listen(PORT, () => {
     console.log(`Sunucu http://localhost:${PORT} üzerinden çalışıyor.`)
 })

@@ -20,8 +20,8 @@ app.use(cors());
 import uploadRoutes from "./routes/uploadRoutes"
 import {UPLOAD_DIR} from "./helpers/fileUpload"
 
-app.use("/api/upload", uploadRoutes);
-app.use("/uploads",express.static(UPLOAD_DIR));
+app.use("/", uploadRoutes);
+app.use("/static",express.static(UPLOAD_DIR));
 
 import errorHandler from "./middlewares/errorHandler";
 
